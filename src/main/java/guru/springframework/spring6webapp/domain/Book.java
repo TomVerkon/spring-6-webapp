@@ -1,5 +1,6 @@
 package guru.springframework.spring6webapp.domain;
 
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -52,6 +53,40 @@ public class Book {
 
   public void setAuthors(Set<Author> authors) {
     this.authors = authors;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 3;
+    hash = 37 * hash + Objects.hashCode(this.id);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Book other = (Book) obj;
+    return Objects.equals(this.id, other.id);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Book{");
+    sb.append("id=").append(id);
+    sb.append(", title=").append(title);
+    sb.append(", isbn=").append(isbn);
+    sb.append(", authors=").append(authors);
+    sb.append('}');
+    return sb.toString();
   }
 
 }

@@ -1,5 +1,6 @@
 package guru.springframework.spring6webapp.domain;
 
+import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -9,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
 @Entity
+@
 public class Author {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,6 +51,40 @@ public class Author {
 
   public void setBooks(Set<Book> books) {
     this.books = books;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 5;
+    hash = 13 * hash + Objects.hashCode(this.id);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Author other = (Author) obj;
+    return Objects.equals(this.id, other.id);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Author{");
+    sb.append("id=").append(id);
+    sb.append(", firstName=").append(firstName);
+    sb.append(", lastName=").append(lastName);
+    sb.append(", books=").append(books);
+    sb.append('}');
+    return sb.toString();
   }
 
 }
