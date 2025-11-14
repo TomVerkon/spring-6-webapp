@@ -20,7 +20,7 @@ public class Author {
   private String lastName;
 
   @ManyToMany(mappedBy = "authors")
-  private Set<Book> books;
+  private Set<Book> books = new java.util.HashSet<>();
 
   public Long getId() {
     return id;
@@ -83,7 +83,7 @@ public class Author {
     sb.append("id=").append(id);
     sb.append(", firstName=").append(firstName);
     sb.append(", lastName=").append(lastName);
-    sb.append(", books=").append(books);
+    sb.append(", books=").append(books.size());
     sb.append('}');
     return sb.toString();
   }

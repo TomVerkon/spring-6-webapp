@@ -13,7 +13,7 @@ import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Book {
-  
+
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
@@ -22,7 +22,7 @@ public class Book {
 
   @ManyToMany
   @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
-  private Set<Author> authors;
+  private Set<Author> authors = new java.util.HashSet<>();
 
   public Long getId() {
     return id;
@@ -85,7 +85,7 @@ public class Book {
     sb.append("id=").append(id);
     sb.append(", title=").append(title);
     sb.append(", isbn=").append(isbn);
-    sb.append(", authors=").append(authors);
+    sb.append(", authors=").append(authors.size());
     sb.append('}');
     return sb.toString();
   }
