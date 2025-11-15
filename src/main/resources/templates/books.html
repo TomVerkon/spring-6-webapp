@@ -7,7 +7,7 @@
 <body>
     <h1 th:text="${message}">Book List</h1>
 
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>ID</th>
@@ -22,5 +22,6 @@
                 <td th:text="${book.publisher.name}">Sample Publisher</td>
             </tr>
         </tbody>
+    </table>
 </body>
 </html>
